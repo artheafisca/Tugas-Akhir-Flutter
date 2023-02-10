@@ -72,7 +72,7 @@ class _ChartScreenState extends State<ChartScreen> {
           double sum = 0;
           if (snapshot.hasData) {
             for (int i = 0; i < snapshot.data!.docs.length; i++) {
-              if (snapshot.data!.docs[i]['status'] == 'payment' &&
+              if (snapshot.data!.docs[i]['status'] == 'payment' ||
                   snapshot.data!.docs[i]['status'] == 'transfer') {
                 sum += int.parse(snapshot.data!.docs[i]['out']);
               }

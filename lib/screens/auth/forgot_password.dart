@@ -56,10 +56,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                   side: BorderSide(color: Colors.white))),
-          onPressed: () async {
+          onPressed: () {
             _loginSementara();
             _email.clear();
-            await forgotPassword(_email.text);
+            // await forgotPassword(_email.text);
           },
           child: Text(
             "Sign Up",
@@ -140,8 +140,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     });
 
     if (_email.text.isNotEmpty) {
-      print("BERHASIL");
-      await Future.delayed(Duration(seconds: 2));
+      // await Future.delayed(Duration(seconds: 2));
 
       Fluttertoast.showToast(
           msg: "Email sended! Please check your email to reset password.",
@@ -150,6 +149,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           toastLength: Toast.LENGTH_LONG,
           webPosition: "center");
       Navigator.pop(context);
+      await forgotPassword(_email.text);
     } else {
       print("GAGAL");
     }

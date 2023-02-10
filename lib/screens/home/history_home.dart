@@ -28,6 +28,8 @@ class HistoryHome extends StatelessWidget {
               return Container(
                 height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
+                  physics: BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context, index) {
                     DocumentSnapshot data = snapshot.data!.docs[index];

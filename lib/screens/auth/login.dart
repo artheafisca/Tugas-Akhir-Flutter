@@ -294,6 +294,10 @@ class _LoginState extends State<Login> {
   }
 
   void _signIn(String email, String password) async {
+    // setState(()  {
+    //   _isLoading = true;
+    // });
+
     if (_formKey.currentState!.validate()) {
       try {
         await FirebaseAuth.instance
