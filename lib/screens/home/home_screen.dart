@@ -251,6 +251,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             });
 
                                             sweatAlert(context);
+                                             _nominal.clear();
+                                             _tujuan.clear();
                                           }
                                         },
                                         style: ButtonStyle(
@@ -350,6 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             // Navigator.pop(context);
 
                                             sweatAlert(context);
+                                            _nominal.clear();
                                           }
                                         },
                                         style: ButtonStyle(

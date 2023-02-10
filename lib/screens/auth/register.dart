@@ -180,8 +180,13 @@ class _RegisterState extends State<Register> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                   side: BorderSide(color: Colors.white))),
-          onPressed: () async =>
-              await _signUp(_email.text, _password.text, _name.text),
+          onPressed: () async {
+            await _signUp(_email.text, _password.text, _name.text);
+            _name.clear();
+            _email.clear();
+            _password.clear();
+            _passwordConfirm.clear();
+          },
           child: Text(
             "Sign Up",
             style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
@@ -327,7 +332,6 @@ class _RegisterState extends State<Register> {
 
         wPushReplaceTo(context, Login());
 
-        
         await FirebaseAuth.instance.currentUser!.sendEmailVerification();
         // User? user = FirebaseAuth.instance.currentUser;
 

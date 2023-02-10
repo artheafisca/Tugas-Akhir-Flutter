@@ -1,4 +1,5 @@
 import 'package:e_wallet/model/color.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -55,7 +56,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                   side: BorderSide(color: Colors.white))),
-          onPressed: () => _loginSementara(),
+          onPressed: () async {
+            _loginSementara();
+            _email.clear();
+            await forgotPassword(_email.text);
+          },
           child: Text(
             "Sign Up",
             style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
@@ -148,5 +153,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     } else {
       print("GAGAL");
     }
+  }
+
+  Future<void> forgotPassword(String email) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   }
 }

@@ -78,6 +78,8 @@ class _LoginState extends State<Login> {
               }
             }
 
+            //tes
+
             return null;
           },
         ),
@@ -129,7 +131,11 @@ class _LoginState extends State<Login> {
                 elevation: 2,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30))),
-            onPressed: () => _signIn(_email.text, _password.text),
+            onPressed: () {
+              _signIn(_email.text, _password.text);
+              _email.clear();
+              _password.clear();
+            },
             child: Text(
               "Sign In",
               style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
@@ -176,11 +182,11 @@ class _LoginState extends State<Login> {
       margin: EdgeInsets.fromLTRB(30, 20, 30, 0),
       child: Row(
         children: [
-          Container(
-              child:
-                  IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowBack))),
+          // Container(
+          //     child:
+          //         IconButton(onPressed: () {}, icon: Icon(EvaIcons.arrowBack))),
           SizedBox(
-            width: 200,
+            width: 225,
           ),
           GestureDetector(
             child: Container(
@@ -188,7 +194,9 @@ class _LoginState extends State<Login> {
               color: Colors.transparent,
               child: Text(
                 "Register",
-                style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+                style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             onTap: () => wPushTo(context, Register()),
@@ -206,8 +214,8 @@ class _LoginState extends State<Login> {
         children: [
           Text(
             "Sign In",
-            style:
-                GoogleFonts.poppins(fontSize: 30, fontWeight: FontWeight.bold),
+            style: GoogleFonts.poppins(
+                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
           ),
           SizedBox(
             height: 5,
@@ -288,27 +296,27 @@ class _LoginState extends State<Login> {
   void _signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
       try {
-          await FirebaseAuth.instance
-              .signInWithEmailAndPassword(email: email, password: password);
-              if(FirebaseAuth.instance.currentUser!.emailVerified) {
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: email, password: password);
+        if (FirebaseAuth.instance.currentUser!.emailVerified) {
           wPushReplaceTo(context, EwalletScreen());
-              } else {
-                showModalBottomSheet(
-          isScrollControlled: true,
-          backgroundColor: Colors.transparent,
-          context: context,
-          builder: (context) {
-            return VerifEmail();
-          },
-        );
-              }
-        } on FirebaseAuthException catch (e) {
-          if (e.code == "user-not-found") {
-            print("No user found for that email.");
-          } else if (e.code == "Wrong-password") {
-            print("Wrong password provided for that user.");
-          }
+        } else {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            backgroundColor: Colors.transparent,
+            context: context,
+            builder: (context) {
+              return VerifEmail();
+            },
+          );
         }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == "user-not-found") {
+          print("No user found for that email.");
+        } else if (e.code == "Wrong-password") {
+          print("Wrong password provided for that user.");
+        }
+      }
     }
   }
 }

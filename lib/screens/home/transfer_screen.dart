@@ -209,6 +209,8 @@ class _TransferScreenState extends State<TransferScreen> {
                                                       }))
                                             ],
                                           ).show();
+
+                                          _nominal.clear();
                                         }
                                       },
                                       style: ButtonStyle(
