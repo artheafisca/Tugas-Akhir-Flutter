@@ -1,5 +1,4 @@
 import 'package:e_wallet/model/color.dart';
-import 'package:e_wallet/provider/saldo_shared_management.dart';
 import 'package:e_wallet/screens/home/history_home.dart';
 import 'package:e_wallet/screens/home/history_tf.dart';
 import 'package:e_wallet/screens/home/notif_screen.dart';
